@@ -1,0 +1,71 @@
+#' Round data
+#'
+#' Round number to 2 digits, does not always round 0.5 up
+#' @export
+
+round_2dig <- function(x){
+  sprintf("%1.2f", as.numeric(x))
+}
+
+#' Round data
+#'
+#' Round number to 1 digit, does not always round 0.5 up
+#' @param x data
+#' @export
+
+round_1dig <- function(x){
+  sprintf("%1.1f", as.numeric(x))
+}
+
+#' Round data
+#'
+#' Round number to 0 digits, does not always round 0.5 up
+#' @param x data
+#' @export
+
+round_0dig <- function(x){
+  sprintf("%1.0f", as.numeric(x))
+}
+
+#' Round data
+#'
+#' Round decimal point number i.e. 0.9 to percentage i.e. 90%, does not always round 0.5 up
+#' @param x data
+#' @export
+
+round_perc <- function(x){
+  sprintf("%1.0f%%", as.numeric(x)*100)
+}
+
+#' Round data
+#'
+#' Round number to 0 digits, with min suffix, does not always round 0.5 up
+#' @param x data
+#' @export
+
+round_min <-  function(x){
+  paste0(sprintf("%1.0f", as.numeric(x)), " min")
+}
+
+#' Round data
+#'
+#' Round decimal point number i.e. 0.9 to percentage i.e. 90%, always rounds 0.5 up
+#' @param x data
+#' @export
+
+rnd_perc <- function(x, digits=0){
+  val= x*100
+  num <- round_half_up(val, digits)
+  sprintf("%1.0f%%", num)
+}
+
+#' Round data
+#'
+#' Round number to 1 digit, always rounds 0.5 up
+#' @param x data
+#' @export
+
+rndup1 <- function(x){
+  num= round_half_up(x, 1)
+  sprintf("%1.1f", as.numeric(num))
+}

@@ -1,0 +1,16 @@
+Package: FMT
+Title: This package contains function used to create MBQIP Reports by the Flex Monitoring Team
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Nate",
+           family = "Bean",
+           role = c("aut", "cre"),
+           email = "bean@umn.edu")
+Description: This package includes functions used for data creation and presentation through PDF reports and spreadsheets. It also contains some personal functions that are nice to have.
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports: magrittr
