@@ -10,6 +10,7 @@
 #' @export
 
 vjust_right <- function (data, fixed=FALSE, axis_max=100, axis_min=0, invert=FALSE, upper=.9){
+  rtype <- ifelse("year" %ni% names(data), "a", "q")
   data <- data %>%
     {if ("year" %ni% names(data)) dplyr::rename(.data=., year=period) else .}
 
@@ -45,10 +46,15 @@ vjust_right <- function (data, fixed=FALSE, axis_max=100, axis_min=0, invert=FAL
         dplyr::filter(year==yr,
                cah_state==var)
 
-      leg_move <- ifelse(
-        (dplyr::filter(data, year==repyr-1 & cah_state==st)$est > 95| dplyr::filter(data, year==repyr-2 & cah_state==st)$est > 95)==TRUE, 1, 0)
+      leg_move= ifelse(rtype=="a", #if report is the annual report
+                      ifelse((dplyr::filter(data, year==repyr-1 & cah_state==st)$est > 95| dplyr::filter(data, year==repyr-2 & cah_state==st)$est > 95)==TRUE, 1, 0),
+                      0)
+        #leg_move <- ifelse(
+        #  (dplyr::filter(data, year==repyr-1 & cah_state==st)$est > 95| dplyr::filter(data, year==repyr-2 & cah_state==st)$est > 95)==TRUE, 1, 0)
+
       #added 10/27/21.. indicates whether the middle values are high enough to cause the legend to move to the bottom
       #this affects where the text should go
+      #edited 11/18/21 to make this work with quarterly reports
 
       #considerations for plot text position
       #1) position of state line relative to plot bounds. Don't want the text to be partially cut off if too low or too high
