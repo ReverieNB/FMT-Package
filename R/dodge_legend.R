@@ -2,15 +2,15 @@
 #'
 #' Used as argument to legend.position to move the legend to bottom when high data values would overlap it.
 #' @param x plot data
-#' @param meas the measure included in the plot i.e. OP-2
+#' @param m the measure included in the plot i.e. OP-2
 #' @param limit the highest data value that won't move the legend
 #' @param points the number of points on the x axis. Currently includes options for 2-4.
 #' @export
 
-dodge_legend <- function(x, meas, limit, points){
+dodge_legend <- function(x, m, limit, points){
 
   filtered <- x %>%
-    dplyr::filter(cah_state != "U.S.", measure==var) %>%
+    dplyr::filter(cah_state != "U.S.", measure==m) %>%
     dplyr::mutate(est= ifelse(is.na(est), 0, est)) #NA values are annoying with T/F
 
   if (points==4){

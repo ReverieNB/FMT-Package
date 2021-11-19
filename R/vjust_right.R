@@ -11,6 +11,7 @@
 
 vjust_right <- function (data, fixed=FALSE, axis_max=100, axis_min=0, invert=FALSE, upper=.9){
   rtype <- ifelse("year" %in% names(data), "a", "q")
+  repyr <- ifelse(rtype=="q", 999, repyr) #not relevant for q reports
   data <- data %>%
     {if ("year" %ni% names(data)) dplyr::rename(.data=., year=period) else .}
 
