@@ -10,7 +10,7 @@
 #' @export
 
 vjust_right <- function (data, fixed=FALSE, axis_max=100, axis_min=0, invert=FALSE, upper=.9){
-  rtype <- ifelse("year" %ni% names(data), "a", "q")
+  rtype <- ifelse("year" %in% names(data), "a", "q")
   data <- data %>%
     {if ("year" %ni% names(data)) dplyr::rename(.data=., year=period) else .}
 
