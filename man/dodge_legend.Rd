@@ -4,12 +4,12 @@
 \alias{dodge_legend}
 \title{Move legend to avoid overlapping data points}
 \usage{
-dodge_legend(x, var, limit, points)
+dodge_legend(x, m, limit, points)
 }
 \arguments{
 \item{x}{plot data}
 
-\item{var}{the measure included in the plot i.e. OP-2}
+\item{m}{the measure included in the plot i.e. OP-2}
 
 \item{limit}{the highest data value that won't move the legend}
 

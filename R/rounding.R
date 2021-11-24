@@ -69,3 +69,15 @@ rndup1 <- function(x){
   num= round_half_up(x, 1)
   sprintf("%1.1f", as.numeric(num))
 }
+
+#' Round data
+#'
+#' Round number to 0 digits, always rounds 0.5 up
+#' @param x data
+#' @export
+
+rndup <- function(x, digits=0){
+  val= x*100
+  num <- round_half_up(val, digits)
+  sprintf("%1.0f%%", num)
+}
