@@ -39,12 +39,13 @@ round_perc <- function(x){
 
 #' Round data
 #'
-#' Round number to 0 digits, with min suffix, does not always round 0.5 up
+#' Round number to 0 digits, with min suffix, rounds 0.5 up
 #' @param x data
 #' @export
 
 round_min <-  function(x){
-  paste0(sprintf("%1.0f", as.numeric(x)), " min")
+  val= round_half_up(x, digits = 0)
+  paste0(sprintf("%1.0f", as.numeric(val)), " min")
 }
 
 #' Round data

@@ -10,5 +10,5 @@ round_min(x)
 \item{x}{data}
 }
 \description{
-Round number to 0 digits, with min suffix, does not always round 0.5 up
+Round number to 0 digits, with min suffix, rounds 0.5 up
 }
