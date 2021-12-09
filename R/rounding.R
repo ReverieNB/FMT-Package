@@ -83,8 +83,8 @@ rndup1 <- function(x, digits=1){
 #' @export
 
 rndup <- function(x, digits=0, dec= TRUE){
-  if (dec==TRUE) {val= x*100} else {val= x}
+  if (dec==TRUE) {val= x*100} else if (dec==FALSE) {val= x}
   num <- round_half_up(val, digits)
   #sprintf("%1.0f%%", num)
-  sprintf(paste0("%1.", digits, "f%%"), as.numeric(num))
+  sprintf(paste0("%1.", digits, "f%%"), num)
 }
