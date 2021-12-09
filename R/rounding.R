@@ -29,7 +29,7 @@ round_0dig <- function(x){
 
 #' Round data
 #'
-#' Round decimal point number i.e. 0.9 to percentage i.e. 90%, does not always round 0.5 up
+#' Round decimal point number i.e. 0.9 to percentage i.e. 90%, always round 0.5 up
 #' @param x data
 #' @export
 
@@ -66,9 +66,10 @@ rnd_perc <- function(x, digits=0){
 #' @param x data
 #' @export
 
-rndup1 <- function(x){
-  num= round_half_up(x, 1)
-  sprintf("%1.1f", as.numeric(num))
+rndup1 <- function(x, digits=1){
+  num= round_half_up(x, digits)
+  #sprintf("%1.1f", as.numeric(num))
+  sprintf(paste0("%1.", digits, "f"), as.numeric(num))
 }
 
 #' Round data
