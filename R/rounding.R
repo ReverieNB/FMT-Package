@@ -52,6 +52,7 @@ round_min <-  function(x){
 #'
 #' Round decimal point number i.e. 0.9 to percentage i.e. 90%, always rounds 0.5 up
 #' @param x data
+#' @param digits desired number of digits, defaults to 0
 #' @export
 
 rnd_perc <- function(x, digits=0){
@@ -64,6 +65,7 @@ rnd_perc <- function(x, digits=0){
 #'
 #' Round number to 1 digit, always rounds 0.5 up
 #' @param x data
+#' @param digits desired number of digits, defaults to 1
 #' @export
 
 rndup1 <- function(x, digits=1){
@@ -76,10 +78,13 @@ rndup1 <- function(x, digits=1){
 #'
 #' Round number to 0 digits, always rounds 0.5 up
 #' @param x data
+#' @param digits desired number of digits, defaults to 0
+#' @param dec whether number is a decimal and should be multiplied by 100
 #' @export
 
-rndup <- function(x, digits=0){
-  val= x*100
+rndup <- function(x, digits=0, dec= TRUE){
+  if (dec==TRUE) {val= x*100} else {val= x}
   num <- round_half_up(val, digits)
-  sprintf("%1.0f%%", num)
+  #sprintf("%1.0f%%", num)
+  sprintf(paste0("%1.", digits, "f%%"), as.numeric(num))
 }
