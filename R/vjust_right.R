@@ -37,8 +37,10 @@ vjust_right <- function (data, fixed=FALSE, axis_max=100, axis_min=0, invert=FAL
                cah_state==var)
 
       value <- ifelse(yrdata$dif < 0, 2, -.75)
-      value <- ifelse(yrdata$est > 250, 2, -.75) #added 12/10/21
+      value <- ifelse(max(filter(temp, cah_state==st)$est) > 250 & yrdata$est < .25*max(filter(temp, cah_state==st)$est), -.75, value)
+         #added 12/10/21
       #when highest value is very high, the bottom value can get cut off otherwise. few CAHs and no states are affected
+      #if any in temp are bigger, and this one is a certain fraction
 
       positions <- c(positions, value)
     }
