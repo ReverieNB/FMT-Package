@@ -37,6 +37,8 @@ vjust_right <- function (data, fixed=FALSE, axis_max=100, axis_min=0, invert=FAL
                cah_state==var)
 
       value <- ifelse(yrdata$dif < 0, 2, -.75)
+      value <- ifelse(yrdata$est > 250, 2, -.75) #added 12/10/21
+      #when highest value is very high, the bottom value can get cut off otherwise. few CAHs and no states are affected
 
       positions <- c(positions, value)
     }
