@@ -4,10 +4,14 @@
 \alias{rndup}
 \title{Round data}
 \usage{
-rndup(x, digits = 0)
+rndup(x, digits = 0, dec = TRUE)
 }
 \arguments{
 \item{x}{data}
+
+\item{digits}{desired number of digits, defaults to 0}
+
+\item{dec}{whether number is a decimal and should be multiplied by 100}
 }
 \description{
 Round number to 0 digits, always rounds 0.5 up

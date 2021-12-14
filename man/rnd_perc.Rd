@@ -4,10 +4,14 @@
 \alias{rnd_perc}
 \title{Round data}
 \usage{
-rnd_perc(x, digits = 0)
+rnd_perc(x, digits = 0, dec = TRUE)
 }
 \arguments{
 \item{x}{data}
+
+\item{digits}{desired number of digits, defaults to 0}
+
+\item{dec}{whether number is a decimal and should be multiplied by 100}
 }
 \description{
 Round decimal point number i.e. 0.9 to percentage i.e. 90\%, always rounds 0.5 up

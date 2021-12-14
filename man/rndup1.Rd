@@ -4,10 +4,12 @@
 \alias{rndup1}
 \title{Round data}
 \usage{
-rndup1(x)
+rndup1(x, digits = 1)
 }
 \arguments{
 \item{x}{data}
+
+\item{digits}{desired number of digits, defaults to 1}
 }
 \description{
 Round number to 1 digit, always rounds 0.5 up

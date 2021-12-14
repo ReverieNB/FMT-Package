@@ -10,5 +10,5 @@ round_perc(x)
 \item{x}{data}
 }
 \description{
-Round decimal point number i.e. 0.9 to percentage i.e. 90\%, does not always round 0.5 up
+Round decimal point number i.e. 0.9 to percentage i.e. 90\%, always round 0.5 up
 }
