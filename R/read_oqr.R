@@ -15,10 +15,16 @@ read_oqr <- function(folder, quarter, joinMOU=FALSE, ps= TRUE, impute= TRUE){
     {if (ps==FALSE) dplyr::mutate(.data= ., population_total= NA) else .} %>%
     dplyr::select(provider_id, measure, numerator, denominator, population_total) %>%
     dplyr::mutate(provider_id= as.numeric(provider_id)) %>%
-    {if (quarter==1) dplyr::filter(.data= ., provider_id %ni% nomou_p1) else .} %>%
-    {if (quarter==2) dplyr::filter(.data= ., provider_id %ni% nomou_p2) else .} %>%
-    {if (quarter==3) dplyr::filter(.data= ., provider_id %ni% nomou_p3) else .} %>%
-    {if (quarter==4) dplyr::filter(.data= ., provider_id %ni% nomou_p4) else .}
+    dplyr::filter(dplyr::case_when(
+      quarter==1 ~ provider_id %ni% nomou_p1,
+      quarter==2 ~ provider_id %ni% nomou_p2,
+      quarter==3 ~ provider_id %ni% nomou_p3,
+      quarter==4 ~ provider_id %ni% nomou_p4))
+    #{if (quarter==1) dplyr::filter(.data= ., provider_id %ni% nomou_p1) else .} %>%
+    #{if (quarter==2) dplyr::filter(.data= ., provider_id %ni% nomou_p2) else .} %>%
+    #{if (quarter==3) dplyr::filter(.data= ., provider_id %ni% nomou_p3) else .} %>%
+    #{if (quarter==4) dplyr::filter(.data= ., provider_id %ni% nomou_p4) else .}
+  #this worked, but caused an error message when the package was loaded
 
   if (impute==TRUE){
     imputed <- oqr_data %>%
