@@ -23,10 +23,15 @@ read_hai_2020 <- function(folder, quarter, year=2020, joinMOU=FALSE) {
              provider_id= as.numeric(provider_id),
              across(num:den, ~ifelse(is.na(.x), 0, .x))) %>%
       #need to make these 0 instead of NA as long as CAH is included in data.. see more in OPIP report notes
-      {if (quarter==1) filter(.data= ., provider_id %ni% nomou_p1) else .} %>%
-      {if (quarter==2) filter(.data= ., provider_id %ni% nomou_p2) else .} %>%
-      {if (quarter==3) filter(.data= ., provider_id %ni% nomou_p3) else .} %>%
-      {if (quarter==4) filter(.data= ., provider_id %ni% nomou_p4) else .}
+      dplyr::filter(dplyr::case_when(
+        quarter==1 ~ provider_id %ni% nomou_p1,
+        quarter==2 ~ provider_id %ni% nomou_p2,
+        quarter==3 ~ provider_id %ni% nomou_p3,
+        quarter==4 ~ provider_id %ni% nomou_p4))
+      #{if (quarter==1) filter(.data= ., provider_id %ni% nomou_p1) else .} %>%
+      #{if (quarter==2) filter(.data= ., provider_id %ni% nomou_p2) else .} %>%
+      #{if (quarter==3) filter(.data= ., provider_id %ni% nomou_p3) else .} %>%
+      #{if (quarter==4) filter(.data= ., provider_id %ni% nomou_p4) else .}
 
     if (joinMOU==TRUE){
       file_data <- moulist %>%
