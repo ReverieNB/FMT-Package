@@ -4,12 +4,10 @@
 \alias{read_hcahps}
 \title{Read HCAHPS data}
 \usage{
-read_hcahps(file, quarter, joinMOU = FALSE)
+read_hcahps(file, joinMOU = FALSE)
 }
 \arguments{
 \item{file}{data location}
-
-\item{quarter}{data quarter, used in path and elsewhere}
 
 \item{joinMOU}{whether the data should be joined the moulist file. needed for NA measures for non-respondents}
 }
