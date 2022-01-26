@@ -6,13 +6,12 @@
 #' @param axis_max maximum of fixed Y axis; default is 100; only used if fixed=T
 #' @param axis_min minimum of fixed Y axis; default is 100; only used if fixed=T
 #' @param invert use this option if plot shows the data in the opposite order as intended
-#' @param upper the percentage of the Y axis that will cut off data text if exceeded; defaults to .9
 #' @export
 
-easy_just2 <- function (data, axis_max=100, axis_min=0, invert=FALSE, upper=.9){
+easy_just2 <- function (data, axis_max=100, axis_min=0, invert=FALSE){
 
-  data <- data %>%
-    {if ("year" %ni% names(data)) dplyr::rename(.data=., year=period) else .}
+data <- data %>%
+  {if ("year" %ni% names(data)) dplyr::rename(.data=., year=period) else .}
 
 temp <- data %>%
   dplyr::mutate(cah_state= dplyr::case_when(
@@ -40,10 +39,10 @@ temp <- data %>%
         yrdata$ndif < 0 & yrdata$sdif < 0 ~ 2, #both lines above hosp -> below
         yrdata$ndif >= 0 & yrdata$sdif >= 0 ~ -.75, #both lines below hosp -> above
         #overall logic, place closer to further line and closer to hosp line
-        yrdata$ndif >= 0 & yrdata$sdif < 0 & abs(yrdata$ndif) >= abs(yrdata$sdif) ~ -.75, #ndif above, bigger space above -> above
-        yrdata$ndif < 0 & yrdata$sdif >= 0 & abs(yrdata$ndif) <= abs(yrdata$sdif) ~ -.75, #sdif above, bigger space above -> above
-        yrdata$ndif >= 0 & yrdata$sdif < 0 & abs(yrdata$ndif) < abs(yrdata$sdif) ~ 2,#ndif above, bigger space below -> below
-        yrdata$ndif < 0 & yrdata$sdif >= 0 & abs(yrdata$ndif) > abs(yrdata$sdif) ~ 2)#sdif above, bigger space below -> below
+        yrdata$ndif >= 0 & yrdata$sdif < 0 & abs(yrdata$ndif) <= abs(yrdata$sdif) ~ -.75, #ndif below/sdif above, bigger space above -> above
+        yrdata$ndif < 0 & yrdata$sdif >= 0 & abs(yrdata$ndif) >= abs(yrdata$sdif) ~ -.75, #ndif above/sdif below, bigger space above -> above
+        yrdata$ndif >= 0 & yrdata$sdif < 0 & abs(yrdata$ndif) > abs(yrdata$sdif) ~ 2,#ndif below/sdif above, bigger space below -> below
+        yrdata$ndif < 0 & yrdata$sdif >= 0 & abs(yrdata$ndif) < abs(yrdata$sdif) ~ 2)#ndif above/sdif below, bigger space below -> below
 
       positions <- c(positions, value)
     }
