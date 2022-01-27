@@ -38,6 +38,7 @@ temp <- data %>%
         max(temp$hosp, na.rm = T) > 250 & yrdata$hosp < .25*max(temp$hosp, na.rm = T) ~ -.75, #very high and low value, print above
         yrdata$ndif < 0 & yrdata$sdif < 0 ~ 2, #both lines above hosp -> below
         yrdata$ndif >= 0 & yrdata$sdif >= 0 ~ -.75, #both lines below hosp -> above
+        yrdata$ndif==0 & yrdata$sdif==0 ~ -.75, #all lines are equal -> above
         #overall logic, place closer to further line and closer to hosp line
         yrdata$ndif >= 0 & yrdata$sdif < 0 & abs(yrdata$ndif) <= abs(yrdata$sdif) ~ -.75, #ndif below/sdif above, bigger space above -> above
         yrdata$ndif < 0 & yrdata$sdif >= 0 & abs(yrdata$ndif) >= abs(yrdata$sdif) ~ -.75, #ndif above/sdif below, bigger space above -> above
