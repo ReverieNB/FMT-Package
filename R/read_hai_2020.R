@@ -27,7 +27,7 @@ read_hai_2020 <- function(folder, quarter, year=2020, joinMOU=FALSE) {
         quarter==1 ~ provider_id %ni% nomou_p1,
         quarter==2 ~ provider_id %ni% nomou_p2,
         quarter==3 ~ provider_id %ni% nomou_p3,
-        quarter==4 ~ provider_id %ni% nomou_p4))
+        quarter==4 ~ provider_id %ni% nomou_quarterly))
       #{if (quarter==1) filter(.data= ., provider_id %ni% nomou_p1) else .} %>%
       #{if (quarter==2) filter(.data= ., provider_id %ni% nomou_p2) else .} %>%
       #{if (quarter==3) filter(.data= ., provider_id %ni% nomou_p3) else .} %>%
