@@ -7,11 +7,11 @@
 
 scat_matrix <- function(x, col=NULL){
   if (is.null(col)){
-    smatrix <- GGally::ggpairs(data) + theme_nate()
+    smatrix <- GGally::ggpairs(x) + theme_nate()
     print(smatrix)}
 
   else{
-    smatrix <- GGally::ggpairs(data, ggplot2::aes(color=col)) + theme_nate()
+    smatrix <- GGally::ggpairs(x, ggplot2::aes(color=col)) + theme_nate()
     print(smatrix)
   }
 }
