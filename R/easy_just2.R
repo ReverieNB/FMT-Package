@@ -37,6 +37,7 @@ temp <- data %>%
       value <- case_when(
         max(temp$hosp, na.rm = T) > 250 & yrdata$hosp < .25*max(temp$hosp, na.rm = T) ~ -.75, #very high and low value, print above
         yrdata$ndif < 0 & yrdata$sdif < 0 ~ 2, #both lines above hosp -> below
+        yrdata$ndif >= 0 & yrdata$sdif >= 0 & yrdata$hosp==499 ~ 2, #both lines below hosp, but outlier obs -> below
         yrdata$ndif >= 0 & yrdata$sdif >= 0 ~ -.75, #both lines below hosp -> above
         yrdata$ndif==0 & yrdata$sdif==0 ~ -.75, #all lines are equal -> above
         #overall logic, place closer to further line and closer to hosp line
