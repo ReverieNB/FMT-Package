@@ -4,21 +4,31 @@
 \alias{add_and_merge}
 \title{Add content to spreadsheets}
 \usage{
-add_and_merge(value, sheet, row_num, colIndex, max_col, style = column_title)
+add_and_merge(
+  value,
+  sheet,
+  row_num,
+  col_num,
+  height = 0,
+  width = 0,
+  style = column_title
+)
 }
 \arguments{
 \item{value}{the value to add}
 
 \item{sheet}{sheet name}
 
-\item{row_num}{cell row number}
+\item{row_num}{minimum row number}
 
-\item{colIndex}{minimum column}
+\item{col_num}{minimum column}
 
-\item{max_col}{maximum column}
+\item{height}{number of merged rows}
+
+\item{width}{number of merged columns}
 
 \item{style}{formatting style}
 }
 \description{
-Similar to add_stuff but will also merge columns
+Similar to add_stuff, but can add values to merged rows and columns
 }
