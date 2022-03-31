@@ -83,9 +83,10 @@ rndup1 <- function(x, digits=1){
 #' @param dec whether number is a decimal and should be multiplied by 100
 #' @export
 
-rndup <- function(x, digits=0, dec= TRUE){
+#it would make more sense to have mark= F, but would need to make broader changes to files
+rndup <- function(x, digits=0, dec= TRUE, mark= TRUE){
   if (dec==TRUE) {val= x*100} else if (dec==FALSE) {val= x}
   num <- round_half_up(val, digits)
   #sprintf("%1.0f%%", num)
-  sprintf(paste0("%1.", digits, "f%%"), num)
+  if (mark==TRUE) {sprintf(paste0("%1.", digits, "f%%"), num)} else if (mark==FALSE){sprintf("%1.1f", num)}
 }
