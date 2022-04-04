@@ -32,14 +32,14 @@ add_and_merge <- function(value, sheet, row_num, col_num, height=0, width=0, sty
 
   #now set cell style for those extra cells created above
   if (height == 0 & width != 0){
-    list <- rep(paste0('sv_', 1:20)) #possible files
+    list <- rep(paste0('sv_', 1:50)) #possible files
     list <- list[2:width] #the files that were created
     for (file in list){
       temp <- get(file)
       xlsx::setCellStyle(temp[[1,1]], style)
     }
   } else if (height != 0 & width==0){
-    list <- rep(paste0('sv_', 1:20))
+    list <- rep(paste0('sv_', 1:50))
     list <- list[2:height]
     for (file in list){
       temp <- get(file)
