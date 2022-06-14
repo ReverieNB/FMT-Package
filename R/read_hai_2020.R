@@ -12,6 +12,10 @@ read_hai_2020 <- function(folder, quarter, year=2020, joinMOU=FALSE) {
   hai_measures <- c("CAUTI", "CDIFF", "CLABSI", "MRSABLD", "SSICOLO", "SSIHYST")
   hai_data <- data.frame()
 
+  if (exists('nomou_p4')){ #reconcile difference between qtrly/annual reports
+    nomou_quarterly <- nomou_p4
+  }
+
   for (m in hai_measures){
     file_data <- read_csv(paste0(fmt_folder, "Data/MBQIP Data/", year, "/", folder, "HRSA_CAH_HAI_", m, "_", year, "Q", quarter,".csv")) %>%
       clean_names() %>%
@@ -42,4 +46,8 @@ read_hai_2020 <- function(folder, quarter, year=2020, joinMOU=FALSE) {
     hai_data <- rbind(hai_data, file_data)
   }
   return(hai_data)
+}
+
+if (exists('nomou_p4')){
+  nomou_quarterly <- nomou_p4
 }
