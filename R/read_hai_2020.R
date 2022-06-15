@@ -25,7 +25,8 @@ read_hai_2020 <- function(folder, quarter, year=2020, joinMOU=FALSE) {
              den= sir_den) %>%
       mutate(measure= m,
              provider_id= as.numeric(provider_id),
-             across(num:den, ~ifelse(is.na(.x), 0, .x))) %>%
+             across(num:den, ~ifelse(is.na(.x), 0, .x)),
+             quarter=quarter) %>%
       #need to make these 0 instead of NA as long as CAH is included in data.. see more in OPIP report notes
       dplyr::filter(dplyr::case_when(
         quarter==1 ~ provider_id %ni% nomou_p1,
@@ -48,6 +49,3 @@ read_hai_2020 <- function(folder, quarter, year=2020, joinMOU=FALSE) {
   return(hai_data)
 }
 
-if (exists('nomou_p4')){
-  nomou_quarterly <- nomou_p4
-}

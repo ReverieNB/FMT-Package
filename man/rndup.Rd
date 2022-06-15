@@ -4,7 +4,7 @@
 \alias{rndup}
 \title{Round data}
 \usage{
-rndup(x, digits = 0, dec = TRUE)
+rndup(x, digits = 0, dec = TRUE, mark = TRUE)
 }
 \arguments{
 \item{x}{data}

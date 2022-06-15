@@ -4,10 +4,10 @@
 \alias{move_back}
 \title{Adjust quarters}
 \usage{
-move_back(value, move)
+move_back(period, move)
 }
 \arguments{
-\item{value}{input value between 1 and 4}
+\item{period}{period, i.e. 2021Q1}
 
 \item{move}{the number of periods back from current}
 }
